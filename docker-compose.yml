@@ -1,0 +1,56 @@
+version: "2.1"
+
+services:
+  cassandra:
+    ports:
+      - "9042:9042"
+    image: cassandra:latest
+    container_name: cassandra
+    environment:
+      DS_LICENSE: accept
+      HOST: cassandradb
+    volumes:
+      - dbvolume:/var/lib/cassandra
+    restart: always
+    hostname: cassandradb
+    healthcheck:
+      test: ["CMD-SHELL", "[ $$(nodetool statusgossip) = running ]"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+    networks:
+      oauthnetwork:
+        aliases:
+          - cassandradb
+  client:
+    ports:
+      - "4200:4200"
+    environment:
+      API_URL: http://localhost:9292
+    image: angular-client:latest
+    container_name: client
+    networks:
+      oauthnetwork:
+        aliases:
+          - client
+  oauth-cassandra:
+    ports:
+      - "9292:9292"
+    environment:
+      CASSANDRA_HOST: cassandradb
+    image: oauth-cassandra:latest
+    container_name: oauth-cassandra
+    depends_on:
+      cassandra:
+        condition: service_healthy
+    networks:
+      oauthnetwork:
+        aliases:
+          - oauth-cassandra
+
+volumes:
+  dbvolume:
+
+networks:
+  oauthnetwork:
+    driver: bridge
