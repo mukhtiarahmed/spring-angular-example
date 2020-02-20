@@ -1,0 +1,60 @@
+<div class="sidebar" data-color="red" data-image="">
+  <div class="sidebar-wrapper ps">
+    <div class="logo">
+      <a class="simple-text" href="/dashboard"
+        ><div class="logo-img">
+          <img src="assets/img/angular2-logo-white.png" />
+        </div>
+        Ten Hawks
+      </a>
+    </div>
+    <ul class="nav responsive-nav">
+      <li>
+        <a href="/dashboard"
+          ><i class="pe-7s-graph"></i> <span>Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a href="/users"><i class="pe-7s-note2"></i><span>Users</span></a>
+      </li>
+    </ul>
+  </div>
+  <div
+    class="sidebar-background"
+    style="background-image: url(assets/img/sidebar-5.jpg)"
+  ></div>
+</div>
+
+<div class="main-panel ps ps--active-y">
+  <nav class="navbar navbar-default navbar-expand-lg" role="navigation-demo">
+    <div class="container">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-translate">
+        <div class="navbar-brand">
+          Dashboard
+          <div class="ripple-container"></div>
+        </div>
+        <ul class="nav navbar-nav navbar-right ">
+          <li>
+            <a class="nav-item nav-link" href="#" (click)="logout()">Log out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- /.container-->
+  </nav>
+
+  <div class="main-content">
+    <ul class="nav responsive-nav">
+      <li>
+        <a href="/dashboard"
+          ><i class="pe-7s-graph"></i> <span>Dashboard</span></a
+        >
+      </li>
+      <li>
+        <a href="/users"><i class="pe-7s-note2"></i><span>Users</span></a>
+      </li>
+    </ul>
+  </div>
+</div>
